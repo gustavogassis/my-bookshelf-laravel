@@ -1,0 +1,36 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard__item {
+    background-color: transparent;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    color: #007bff;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 60px 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.dashboard__item:hover {
+    text-decoration: underline;
+}
+
+.dashboard__item:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 550px) {
+    .dashboard {
+        flex-direction: row;
+        margin: auto;
+        width: 580px;
+    }
+
+    .dashboard__item{
+        margin: 20px;
+    }
+}

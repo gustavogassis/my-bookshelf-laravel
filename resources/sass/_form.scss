@@ -1,0 +1,157 @@
+$blue: #007bff;
+$gray: #ced4da;
+$gray: lighten(#000, 80%);
+
+
+.form {
+    color: #212529;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    &__label {
+        display: flex;
+        padding: 10px 0;
+        width: auto;
+    }
+
+    &__value {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    &__control {
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        font-size: 16px;
+        padding: 6px 10px;
+    
+
+        &--view {
+            border: 0;
+        }
+
+        &--small { width: 20% }
+
+        &--invalid {
+            border: 1px solid #dc3545;
+        }
+    }
+}
+
+.form__control-file {
+    display: none;
+    opacity: 0;
+    position: relative;
+}
+
+.check__control {
+    align-self: left;
+    border: 5px solid black;
+}
+
+.form__label-file {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    color: #495057;
+    position: relative;
+
+
+    &::after {
+        background-color: #e9ecef;
+        border-left: #e9ecef;
+        border-radius: 0 4px 4px 0;
+        bottom: 0;
+        content: "Procurar";
+        color: #495057;
+        line-height: 1.5;
+        padding: 5px 15px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }   
+
+}
+
+.form__help {
+    color: #888;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: 5px;
+    text-transform: lowercase;
+    padding-left: 3px;
+}
+
+.form__error {
+    color: #dc3545;
+    display: none;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 5px;
+    padding-left: 3px;
+}
+
+.form__action {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.form__button {
+    background-color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    flex-grow: 1;
+    padding: 10px 25px;
+
+
+    &:not(:last-child) {
+        margin-right: 16px;
+    }
+
+    &--primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+}
+
+@media (min-width: 450px) {
+    .form__group {
+        flex-direction: row;
+    }
+
+    .form__label {
+        margin-right: 5px;
+        padding: 7px 0;
+        width: 160px;
+    }
+
+    .check__control {
+        margin: 10px 0;
+    }
+}
+
+
+@media (min-width: 600px) {
+    .form {
+        margin: auto 0;
+        width: 600px;
+    }
+
+    /* .form__control {
+        width: 450px;
+    } */
+}
