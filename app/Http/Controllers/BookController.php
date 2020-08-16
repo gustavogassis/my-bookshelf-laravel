@@ -13,7 +13,7 @@ class BookController extends Controller
     private $genreRepository;
     private $bookRepository;
 
-    public function __construct(BookRepository $bookRepository, GenreRepository $genreRepository) 
+    public function __construct(BookRepository $bookRepository, GenreRepository $genreRepository)
     {
         $this->bookRepository = $bookRepository;
         $this->genreRepository = $genreRepository;
@@ -22,7 +22,7 @@ class BookController extends Controller
     public function index()
     {
         return view('books.index', [
-            'books' => $this->bookRepository->allBooks()
+            'books' => $this->bookRepository->paginate(4)
         ]);
     }
 
@@ -33,7 +33,7 @@ class BookController extends Controller
         ]);
     }
 
-    public function store(StoreBookRequest $request) 
+    public function store(StoreBookRequest $request)
     {
         $attributes = $request->validated();
 
@@ -46,7 +46,7 @@ class BookController extends Controller
             ->with('success', ["O livro <span class='alert__strong'>{$attributes['title']}</span> foi cadastrado com sucesso!"]);
     }
 
-    public function show($id) 
+    public function show($id)
     {
         $book = $this->bookRepository->find($id);
 
@@ -70,7 +70,6 @@ class BookController extends Controller
         $attributes = $request->validated();
         $attributes['nacional'] = $request['nacional'];
 
-        $book = $this->bookRepository->find($id);
         $this->bookRepository->update($id, $attributes);
 
         return redirect(route('books'))
@@ -99,7 +98,7 @@ class BookController extends Controller
             $book->delete($book->id);
             unlink('storage/' . $book->cover);
         }
-        
+
 
         return redirect(route('books'))->with('success', $messages);
     }

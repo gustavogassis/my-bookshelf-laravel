@@ -16,7 +16,6 @@ class AuthorController extends Controller
             return ['value' => $book->author, 'data' => $book->author];
         })->toArray();
 
-        // return response('{"name": "gustavo"}', 404, ['Content-Type' => 'application/json']);
         return response()
             ->json(['suggestions' => $result], 200);
     }

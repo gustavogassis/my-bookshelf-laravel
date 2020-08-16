@@ -12,7 +12,7 @@ class Book extends Model
     public function genres() {
 
         return $this->belongsToMany(Genre::class);
-    } 
+    }
 
     public function getShortDescriptionAttribute() {
 
@@ -28,9 +28,8 @@ class Book extends Model
 
     public function getGenreInArrayAttribute() {
 
-        $arrayGenre = $this->genres->pluck('name')->toArray();
+        return $this->genres->pluck('name')->toArray();
 
-        return $arrayGenre;
     }
 
     public function setNacionalAttribute($value) {

@@ -17,7 +17,7 @@ class BookController extends Controller
     private $genreRepository;
     private $bookRepository;
 
-    public function __construct(BookRepository $bookRepository, GenreRepository $genreRepository) 
+    public function __construct(BookRepository $bookRepository, GenreRepository $genreRepository)
     {
         $this->bookRepository = $bookRepository;
         $this->genreRepository = $genreRepository;
@@ -25,9 +25,9 @@ class BookController extends Controller
 
     public function index() {
 
-        $books = Book::all();
+        $book = $this->bookRepository->findAll();
 
-        $result = $books->map(function ($book) {
+        $result = $book->map(function ($book) {
             $genre = $book->genreInArray;
             $book  = $book->toArray();
             $book['nacional'] = $book['nacional'] === 'S';
@@ -36,12 +36,12 @@ class BookController extends Controller
         });
 
         return response()->json(['result' => $result]);
-        
+
     }
 
     public function show($id) {
 
-        $book = Book::find($id);
+        $book = $this->bookRepository->find($id);
 
         if($book === null) {
             return response()->json([
@@ -59,7 +59,7 @@ class BookController extends Controller
     }
 
     public function store(Request $request) {
-        
+
         $validator = Validator::make($request->all(), [
             'title'       => 'required|max:70',
             'author'      => 'required|max:70',
@@ -83,7 +83,6 @@ class BookController extends Controller
     }
 
     public function update($id, Request $request) {
-        // dd($request);
         $validator = Validator::make($request->all(), [
             'title'       => 'required|max:70',
             'author'      => 'required|max:70',

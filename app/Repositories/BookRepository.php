@@ -9,13 +9,17 @@ class BookRepository {
 
     private $genreRepository;
 
-    public function __construct(GenreRepository $genreRepository) 
+    public function __construct(GenreRepository $genreRepository)
     {
         $this->genreRepository = $genreRepository;
     }
 
-    public function allBooks() {
-        return Book::latest()->paginate(4);
+    public function findAll() {
+        return Book::latest()->get();
+    }
+
+    public function paginate($limit) {
+        return Book::latest()->paginate($limit);
     }
 
     public function find($id) {
@@ -30,7 +34,7 @@ class BookRepository {
         }, $attributes['genre']);
 
         unset($attributes['genre']);
-        
+
         $book = new Book($attributes);
         $book->save();
 
